@@ -37,4 +37,16 @@ public class ClienteController {
     public void excluir(@PathVariable Long id) {
         repository.deleteById(id);
     }
+    
+    @PutMapping("/{id}")
+    public Cliente atualizar(@PathVariable Long id,
+                             @RequestBody Cliente clienteAtualizado) {
+
+        Cliente cliente = repository.findById(id).orElseThrow();
+
+        cliente.setNome(clienteAtualizado.getNome());
+        cliente.setClienteDesde(clienteAtualizado.getClienteDesde());
+
+        return repository.save(cliente);
+    }
 }

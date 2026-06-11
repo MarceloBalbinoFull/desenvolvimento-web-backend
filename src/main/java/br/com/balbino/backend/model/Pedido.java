@@ -17,6 +17,8 @@ public class Pedido {
 
     private LocalDate dataPedido;
 
+    private Integer quantidade;
+
     @ManyToOne
     private Cliente cliente;
 
@@ -36,6 +38,14 @@ public class Pedido {
 
     public void setDataPedido(LocalDate dataPedido) {
         this.dataPedido = dataPedido;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 
     public Cliente getCliente() {

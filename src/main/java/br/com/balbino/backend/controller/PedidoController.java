@@ -37,4 +37,25 @@ public class PedidoController {
     public void excluir(@PathVariable Long id) {
         repository.deleteById(id);
     }
+    
+    @PutMapping("/{id}")
+    public Pedido atualizar(@PathVariable Long id,
+                             @RequestBody Pedido pedidoAtualizado) {
+
+        Pedido pedido = repository.findById(id).orElseThrow();
+
+        pedido.setDataPedido(pedidoAtualizado.getDataPedido());
+        pedido.setQuantidade(pedidoAtualizado.getQuantidade());
+        pedido.setCliente(pedidoAtualizado.getCliente());
+        pedido.setProduto(pedidoAtualizado.getProduto());
+
+        return repository.save(pedido);
+    }
+    
+    @GetMapping("/cliente/{id}")
+    public List<Pedido> listarPorCliente(@PathVariable Long id) {
+
+        return repository.findByClienteId(id);
+
+    }
 }
